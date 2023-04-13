@@ -1,56 +1,72 @@
-// Sample code to read input and write output:
 
-/*
-#include <iostream>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-int main() 
-{
-	char name[20];
-	cin >> name;                     // Read input from STDIN
-	cout << "Hello " << name;        // Write output to STDOUT
-	return 0;
+void imp(){
+
+  #ifndef ONLINE_JUDGE
+      freopen("input.txt","r",stdin);
+      freopen("output.txt","w",stdout);
+  #endif
 }
-*/
 
-// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+class Search {
+    private : 
+        vector <int> arr;
+        int n, val;
 
-#include <iostream>
+    public :
+        void input () {
+            cin >> n >> val;
 
-using namespace std;
-
-int main()
-{
-    int n;
-    cin >> n;
-
-    int num = 1;
-
-    for (int i = 1; i <= n; i++)
-    {
-        for (int j = 1; j <= i; j++)
-        {
-            cout << num++;
-            if (j < i)
-                cout << '*';
+            int tmp;
+            while (n--) {
+                cin >> tmp;
+                arr.push_back (tmp);
+            }
         }
-        cout << endl;
-    }
 
-    num--;
-    for (int i = n; i >= 1; i--)
-    {
-        int k = i - 1;
-        for (int j = 1; j <= i; j++)
-        {
-            cout << num - k--;
-            if (j < i)
-                cout << '*';
+        int linearSearch () {
+            cout << "I was gere";
+            for (int i = 0; i < arr.size (); i++) {
+                cout << arr[i] << "  ";
+                if (arr[i] == val) {
+                    return i;
+                }
+            }
+
+            return -1;
         }
-        num -= i;
-        cout << endl;
-    }
+
+        int binarySearch () {
+            int beg = arr[0], end = arr[arr.size () - 1];
+            int mid;
+            int i;
+
+            while (i > 0 && i < arr.size ()) {
+                mid = (end - beg + 1) / 2;
+
+                if (arr[mid] == val)
+                    return mid;
+                else if (arr[mid] > val) {
+                    end =  mid - 1;
+                }
+                else
+                    beg = mid + 1;
+            }
+
+            return -1;
+        }
+
+};
+
+int main () {
+    imp ();
+
+    int t;
+    cin >> t;
+
+    cout << t;
 
     return 0;
 }
