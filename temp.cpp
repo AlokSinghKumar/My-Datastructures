@@ -39,12 +39,12 @@ class Search {
         }
 
         int binarySearch () {
-            int beg = arr[0], end = arr[arr.size () - 1];
+            int beg = 0, end = arr[arr.size () - 1];
             int mid;
-            int i;
 
-            while (i > 0 && i < arr.size ()) {
-                mid = (end - beg + 1) / 2;
+
+            while (!(beg > end)) {
+                mid = beg + (end - beg) / 2;
 
                 if (arr[mid] == val)
                     return mid;
@@ -52,7 +52,7 @@ class Search {
                     end =  mid - 1;
                 }
                 else
-                    beg = mid + 1;
+                    beg  = mid + 1;
             }
 
             return -1;
@@ -62,11 +62,12 @@ class Search {
 
 int main () {
     imp ();
+    
+    Search s;
 
-    int t;
-    cin >> t;
-
-    cout << t;
+    s.input ();
+    int ans = s.binarySearch ();
+    cout << ans << endl;
 
     return 0;
 }
