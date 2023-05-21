@@ -10,64 +10,32 @@ void imp(){
   #endif
 }
 
-class Search {
-    private : 
-        vector <int> arr;
-        int n, val;
+int countIf (int elem) {
+    return elem % 2 == 0;
+}
 
-    public :
-        void input () {
-            cin >> n >> val;
-
-            int tmp;
-            while (n--) {
-                cin >> tmp;
-                arr.push_back (tmp);
-            }
-        }
-
-        int linearSearch () {
-            cout << "I was gere";
-            for (int i = 0; i < arr.size (); i++) {
-                cout << arr[i] << "  ";
-                if (arr[i] == val) {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
-
-        int binarySearch () {
-            int beg = 0, end = arr[arr.size () - 1];
-            int mid;
-
-
-            while (!(beg > end)) {
-                mid = beg + (end - beg) / 2;
-
-                if (arr[mid] == val)
-                    return mid;
-                else if (arr[mid] > val) {
-                    end =  mid - 1;
-                }
-                else
-                    beg  = mid + 1;
-            }
-
-            return -1;
-        }
-
-};
 
 int main () {
     imp ();
     
-    Search s;
+    string str; 
+	cin >> str;
+	
+	vector<int> store;
+    int count = 0;
 
-    s.input ();
-    int ans = s.binarySearch ();
-    cout << ans << endl;
+    for (int i = 0; i < str.length (); i++) {
+        count += str [i] == '(' ? +1 : -1;
+    }
+
+    if (count > 0)
+        cout << (str.length () - count) / 2 << endl;
+
+    else if (count < 0)
+        cout << (str.length () + count) / 2 << endl;
+    
+    else 
+        cout << str.length () / 2 << endl;
 
     return 0;
-}
+} 

@@ -1,3 +1,1 @@
-i = 0, beg = 0, mid = 2, end = 5
-i = 0, beg = 3, mid = 4, end = 5
-4
+3
