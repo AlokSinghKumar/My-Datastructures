@@ -9,10 +9,6 @@ void imp(){
   #endif
 }
 
-int countIf (int elem) {
-    return elem % 2 == 0;
-}
-
 int factorial (int n) {
     if (n <= 1)
         return 1;

@@ -10,32 +10,21 @@ void imp(){
   #endif
 }
 
-int countIf (int elem) {
-    return elem % 2 == 0;
+void countN (int n) {
+    if (n > 1)
+        countN (n - 1);
+
+    cout << n << " ";
 }
 
 
 int main () {
     imp ();
-    
-    string str; 
-	cin >> str;
-	
-	vector<int> store;
-    int count = 0;
 
-    for (int i = 0; i < str.length (); i++) {
-        count += str [i] == '(' ? +1 : -1;
-    }
+    int n;
+    cin >> n;
 
-    if (count > 0)
-        cout << (str.length () - count) / 2 << endl;
-
-    else if (count < 0)
-        cout << (str.length () + count) / 2 << endl;
-    
-    else 
-        cout << str.length () / 2 << endl;
+    countN (n);
 
     return 0;
 } 
