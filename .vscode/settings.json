@@ -3,5 +3,6 @@
         "iostream": "cpp",
         "ostream": "cpp"
     },
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "code-runner.runInTerminal": true
 }

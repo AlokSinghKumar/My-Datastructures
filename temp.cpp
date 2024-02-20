@@ -1,26 +1,78 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
-void imp(){
+class Node {
+	public : 
+		int data;
+		Node *next, *prev;
 
-  #ifndef ONLINE_JUDGE
-      freopen("input.txt","r",stdin);
-      freopen("output.txt","w",stdout);
-  #endif
+		Node (int data) {
+			this -> data = data;
+			this -> next = this -> prev = nullptr;
+		}
+};
+
+class DoubleLinkedList {
+	public : 
+		Node *head = nullptr, *tail = nullptr;
+
+		void initiateList (Node *node);
+		void pushBack (int data);
+		void pushFront (int data);
+		void popBack ();
+		void popFront ();
+		void display ();
+};
+
+void DoubleLinkedList :: pushBack (int data) {
+	Node *newNode = new Node (data);
+
+	if (this -> head == nullptr || this -> tail == nullptr) {
+		head = newNode;
+		tail = newNode;
+		return;
+	}
+
+	newNode -> prev = tail;
+	tail -> next = newNode;
+	tail = newNode;
+}
+
+void DoubleLinkedList :: pushFront (int data) {
+	Node *newNode = new Node (data);
+
+	if (this -> head == nullptr || this -> tail == nullptr) {
+		this -> head = newNode;
+		this -> tail = newNode;
+		return;
+	}
+
+	newNode -> next = head;
+	head -> prev = newNode;
+	head = newNode;
+}
+
+void DoubleLinkedList :: display () {
+	Node *tmp = this -> head;
+
+	while (tmp != nullptr) {
+		cout << tmp -> data << " ";
+		tmp = tmp -> next;
+	}
 }
 
 int main () {
-    imp ();
-    vector<int> arr;
-    int n, s;
+	DoubleLinkedList list;
 
-    cin >> n >> s;
+	list.pushBack (1);
+	list.pushBack (2);
+	list.pushBack (3);
+	list.pushBack (4);
+	list.pushFront (0);
+	list.pushFront (-1);
+	list.pushFront (10);
 
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
+	list.display ();
 
-        arr.push_back (tmp);
-    }
+	return 0;
 }
