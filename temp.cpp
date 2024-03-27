@@ -1,78 +1,72 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
+ 
+void imp(){
 
-class Node {
-	public : 
-		int data;
-		Node *next, *prev;
+    #ifdef ONLINE_JUDGE
+      freopen ("input.txt", "r", stdin);
+      freopen ("output.txt", "w", stdout);
+    #endif
+}
 
-		Node (int data) {
-			this -> data = data;
-			this -> next = this -> prev = nullptr;
-		}
+class Solution{
+  public:
+    string getSmallest (string arr[], int n) {
+        string ans = "";
+        int len = INT_MAX;
+        
+        for (int i = 0; i < n; i++) {
+            if (len > arr[i].length ()) {
+                len = arr[i].length ();
+                ans = arr[i];
+            }
+        }
+        
+        return ans;
+    }
+    
+    string getLongestPrefix (string arr[], int n) {
+        string smallest = getSmallest (arr, n);
+        string prefix = "";
+
+        for (int i = 0; i < smallest.length (); i++) {
+            for (int j = 0; j < n; j++) {
+                if (smallest [i] != arr[j][i]) {
+                    return prefix;
+                }
+            }
+            
+            prefix += smallest[i];
+        }
+        
+        return prefix;
+    }
+
+    string longestCommonPrefix (string arr[], int n)
+    {
+        string prefix = getLongestPrefix (arr, n);
+        
+        if (!prefix.length ())
+            return "-1";
+            
+        return prefix;
+    }
 };
 
-class DoubleLinkedList {
-	public : 
-		Node *head = nullptr, *tail = nullptr;
 
-		void initiateList (Node *node);
-		void pushBack (int data);
-		void pushFront (int data);
-		void popBack ();
-		void popFront ();
-		void display ();
-};
+int main()
+{
+    imp();
 
-void DoubleLinkedList :: pushBack (int data) {
-	Node *newNode = new Node (data);
-
-	if (this -> head == nullptr || this -> tail == nullptr) {
-		head = newNode;
-		tail = newNode;
-		return;
-	}
-
-	newNode -> prev = tail;
-	tail -> next = newNode;
-	tail = newNode;
-}
-
-void DoubleLinkedList :: pushFront (int data) {
-	Node *newNode = new Node (data);
-
-	if (this -> head == nullptr || this -> tail == nullptr) {
-		this -> head = newNode;
-		this -> tail = newNode;
-		return;
-	}
-
-	newNode -> next = head;
-	head -> prev = newNode;
-	head = newNode;
-}
-
-void DoubleLinkedList :: display () {
-	Node *tmp = this -> head;
-
-	while (tmp != nullptr) {
-		cout << tmp -> data << " ";
-		tmp = tmp -> next;
-	}
-}
-
-int main () {
-	DoubleLinkedList list;
-
-	list.pushBack (1);
-	list.pushBack (2);
-	list.pushBack (3);
-	list.pushBack (4);
-	list.pushFront (0);
-	list.pushFront (-1);
-	list.pushFront (10);
-
-	list.display ();
-
-	return 0;
+    int t; cin >> t;
+    while (t--)
+    {
+        int n; cin >> n;
+        string arr[n];
+        for (int i = 0; i < n; ++i)
+            cin >> arr[i];
+        
+        Solution ob;
+        cout << ob.longestCommonPrefix (arr, n) << endl;
+    }
 }
