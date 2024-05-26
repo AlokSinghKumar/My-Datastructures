@@ -1,72 +1,43 @@
+#define ONLINE_JUDGE
 #include<bits/stdc++.h>
 using namespace std;
  
 void imp(){
-
     #ifdef ONLINE_JUDGE
-      freopen ("input.txt", "r", stdin);
-      freopen ("output.txt", "w", stdout);
+        if (freopen("input.txt", "r", stdin) == NULL) {
+            perror("Error redirecting stdin");
+            exit(1);
+        }
+        if (freopen("output.txt", "w", stdout) == NULL) {
+            perror("Error redirecting stdout");
+            exit(1);
+        }
     #endif
 }
 
-class Solution{
-  public:
-    string getSmallest (string arr[], int n) {
-        string ans = "";
-        int len = INT_MAX;
-        
-        for (int i = 0; i < n; i++) {
-            if (len > arr[i].length ()) {
-                len = arr[i].length ();
-                ans = arr[i];
-            }
-        }
-        
-        return ans;
-    }
-    
-    string getLongestPrefix (string arr[], int n) {
-        string smallest = getSmallest (arr, n);
-        string prefix = "";
+int main () {
+	imp();
 
-        for (int i = 0; i < smallest.length (); i++) {
-            for (int j = 0; j < n; j++) {
-                if (smallest [i] != arr[j][i]) {
-                    return prefix;
-                }
-            }
-            
-            prefix += smallest[i];
-        }
-        
-        return prefix;
-    }
-
-    string longestCommonPrefix (string arr[], int n)
-    {
-        string prefix = getLongestPrefix (arr, n);
-        
-        if (!prefix.length ())
-            return "-1";
-            
-        return prefix;
-    }
-};
+	int n;
+	cin >> n;
+	vector<int> a(n), b(n), ans;
 
 
-int main()
-{
-    imp();
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
 
-    int t; cin >> t;
-    while (t--)
-    {
-        int n; cin >> n;
-        string arr[n];
-        for (int i = 0; i < n; ++i)
-            cin >> arr[i];
-        
-        Solution ob;
-        cout << ob.longestCommonPrefix (arr, n) << endl;
-    }
+	for (int i = 0; i < n; i++)
+		cin >> b[i];
+
+
+	for (int i = 0; i < n; i++)
+		ans.push_back (a[i] + b[i]);
+
+
+	for (vector<int>::iterator itr = ans.begin ();  itr != ans.end (); itr++)
+		cout << *itr << " ";
+
+	cout << endl << ans.size ();
+
+	return 0;
 }
