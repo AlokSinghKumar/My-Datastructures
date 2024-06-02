@@ -15,29 +15,44 @@ void imp(){
     #endif
 }
 
+string isSubset (int a[], int b[], int n, int m) {
+	string ans = "No";
+	if (n < m)
+		return ans;
+
+	sort (a, a + n);
+	sort (b, b + m);
+
+	for (int i = 0; i < m; i++) {
+		if (a[i] != b[i])
+			return ans;
+	}
+
+	ans = "Yes";
+	return ans;
+}
+
 int main () {
 	imp();
 
-	int n;
-	cin >> n;
-	vector<int> a(n), b(n), ans;
+	int t;
+	cin >> t;
 
+	while (t--) {
+		int n, m;
+		cin >> n >> m;
 
-	for (int i = 0; i < n; i++)
-		cin >> a[i];
+		int a1[n], a2[m];
 
-	for (int i = 0; i < n; i++)
-		cin >> b[i];
+		for (int i = 0; i < n; i++) {
+			cin >> a1[i];
+		}
 
+		for (int i = 0; i < m; i++)
+			cin >> a2[i];
 
-	for (int i = 0; i < n; i++)
-		ans.push_back (a[i] + b[i]);
-
-
-	for (vector<int>::iterator itr = ans.begin ();  itr != ans.end (); itr++)
-		cout << *itr << " ";
-
-	cout << endl << ans.size ();
+		cout << isSubset (a1, a2, n, m);
+	}
 
 	return 0;
 }
