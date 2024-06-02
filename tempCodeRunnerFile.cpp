@@ -1,2 +1,6 @@
-for (int i = 0; i < 4; i++)
-	// 	cout << get<i>(tp) <<  endl;
+for (vector <int> rowV : a) {
+		for (int colElem : rowV) {
+			cout << colElem << " ";
+		}
+		cout << endl;
+	}
